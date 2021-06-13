@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState,useEffect} from 'react'
+import instance from './models/axios'
+import Row from './components/Row'
+import requests from './utils/requests'
+import './App.css'
+import Banner from './components/Banner'
 
-function App() {
+const App=()=> {  
+  const [data,setData] = useState([])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Banner />
+      <Row title="Netflix Originals" fetchUrl={requests.fetchNetflixOriginals} isLargeRaw />
+      <Row title="Trending Now" fetchUrl={requests.fetchTrending} />
     </div>
   );
 }
